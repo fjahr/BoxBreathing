@@ -11,6 +11,9 @@ export default class Dot extends Component {
   constructor(props) {
     super(props);
     this.scaleValue = new Animated.Value(0);
+    this.state = {
+      guide: 'Tab circle to start/stop breathing cycles'
+    }
   }
 
   scale () {
@@ -20,15 +23,25 @@ export default class Dot extends Component {
         this.scaleValue,
         {
           toValue: 1,
-          duration: 8000,
+          duration: 4000,
           easing: Easing.easeOutBack
         }
-      ).start(() => {
-        if(this.props.active){
-          this.scale();
+      ),
+      Animated.delay(4000),
+      Animated.timing(
+        this.scaleValue,
+        {
+          toValue: 0,
+          duration: 4000,
+          easing: Easing.easeOutBack
         }
-      }),
-    ]);
+      ),
+      Animated.delay(4000),
+    ]).start(() => {
+      if (this.props.active) {
+        this.scale()
+      }
+    });
   }
 
   componentDidUpdate() {
@@ -39,20 +52,41 @@ export default class Dot extends Component {
 
   render() {
     const nearFar = this.scaleValue.interpolate({
-        inputRange: [0, 0.5, 1],
-          outputRange: [1, 7, 1]
+        inputRange: [0, 1],
+          outputRange: [1, 6]
     });
 
     return (
-      <Animated.View style={{
-        width: 50,
-        height: 50,
-        backgroundColor: 'steelblue',
-        borderRadius: 25,
-        transform: [
-          {scale: nearFar}
-        ]
-      }} />
+      <View>
+        <View style={{
+          width: 300,
+          height: 300,
+          borderColor: 'steelblue',
+          borderWidth: 1,
+          borderRadius: 150,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+          <Animated.View style={{
+            width: 50,
+            height: 50,
+            backgroundColor: 'steelblue',
+            borderRadius: 25,
+            transform: [
+              {scale: nearFar}
+            ]
+          }} />
+        </View>
+        <View>
+          <Text style={{
+            textAlign: 'center',
+            color: 'steelblue',
+            marginTop: 20,
+          }}>
+            {this.state.guide}
+          </Text>
+        </ View>
+      </View>
     );
   }
 }

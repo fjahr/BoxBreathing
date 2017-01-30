@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  Button
 } from 'react-native';
 
 import Dot from './dot'
@@ -27,11 +28,29 @@ export default class BoxBreathing extends Component {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
+            <View style={{
+              borderColor: 'steelblue',
+              width: 300,
+              height: 300,
+              borderRadius: 150,
+              flex: 1,
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
           <TouchableHighlight onPress={this._onScreenPress.bind(this)}>
-            <View>
+            <View style={{
+              width: 300,
+              height: 300,
+              flex: 1,
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
               <Dot active={this.state.animate}/>
             </View>
           </ TouchableHighlight>
+          </View>
         </View>
       </View>
     );
