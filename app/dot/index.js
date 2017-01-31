@@ -10,10 +10,11 @@ import {
 export default class Dot extends Component {
   constructor(props) {
     super(props);
-    this.scaleValue = new Animated.Value(0);
     this.state = {
-      guide: 'Tab circle to start/stop breathing cycles'
+      guide: 'Tab circle to start/stop breathing cycles',
     }
+
+    this.scaleValue = new Animated.Value(0);
   }
 
   scale () {
@@ -47,6 +48,7 @@ export default class Dot extends Component {
   componentDidUpdate() {
     if(this.props.active){
       this.scale();
+    } else {
     }
   }
 

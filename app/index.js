@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
+  TouchableOpacity,
   Button
 } from 'react-native';
 
@@ -38,7 +38,7 @@ export default class BoxBreathing extends Component {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-          <TouchableHighlight onPress={this._onScreenPress.bind(this)}>
+          <TouchableOpacity onPress={this._onScreenPress.bind(this)}>
             <View style={{
               width: 300,
               height: 300,
@@ -49,7 +49,7 @@ export default class BoxBreathing extends Component {
             }}>
               <Dot active={this.state.animate}/>
             </View>
-          </ TouchableHighlight>
+          </ TouchableOpacity>
           </View>
         </View>
       </View>
